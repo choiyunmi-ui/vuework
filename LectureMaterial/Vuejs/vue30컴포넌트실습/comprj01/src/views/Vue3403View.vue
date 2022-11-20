@@ -24,8 +24,9 @@ export default {
   },
   //template: ``,
   methods: {
-    printText(e) {
-      console.log(e.target);
+    printText(param1, param2) {
+      console.log(param1, param2);
+      this.$data.mesg = `param1=${param1},param2=${param2}`;
       debugger;
     },
   },
