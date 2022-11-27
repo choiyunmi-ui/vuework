@@ -42,24 +42,25 @@ import TodoHeader from '../components/todo/TodoHeader.vue';
 import TodoFooter from '../components/todo/TodoFooter.vue';
 import TodoInput from '../components/todo/TodoInput.vue';
 import TodoList from '../components/todo/TodoList.vue';
+import { mapActions, mapGetters } from 'vuex';
 export default {
   /* pdtmc^2w */
   props: [],
   data() {
     return {
-      todoItems: [
-        { id: 1, todo: '영화보기', done: false },
-        { id: 2, todo: '주말 산책', done: true },
-        { id: 3, todo: 'ES6 학습', done: false },
-        { id: 4, todo: '잠실 야구장', done: false },
-      ],
+      //todoItems: [
+      //  { id: 1, todo: '영화보기', done: false },
+      //  { id: 2, todo: '주말 산책', done: true },
+      //  { id: 3, todo: 'ES6 학습', done: false },
+      //  { id: 4, todo: '잠실 야구장', done: false },
+      // ],
     };
   },
   //template: ``,
   methods: {
     clearAll(e) {
       console.log(e.target);
-      this.$data.todoItems = [];
+      //this.$data.todoItems = [];
       //this.$data.todoItems = [];
     },
     addTodo(e, newTodoItem) {
@@ -93,13 +94,13 @@ export default {
       //debugger;
       console.log(id);
       //불변객체 = > 복제후 재할당 방식으로 처리 ===> 1. map , filter , reduce 2.spread 연산자 3. immer 라리브러리, immutable 라이브러리
-      const newTodos = this.$data.todoItems.map((item /*, index ,array*/) => {
-        if (item.id === id) {
-          item.done = !item.done;
-        }
-        return item;
-      }); // 복제
-      this.$data.todoItems = newTodos; // 재할당
+      // const newTodos = this.$data.todoItems.map((item /*, index ,array*/) => {
+      //   if (item.id === id) {
+      //     item.done = !item.done;
+      //   }
+      //   return item;
+      // }); // 복제
+      // this.$data.todoItems = newTodos; // 재할당
     },
     removeTodo(id) {
       //debugger;
@@ -112,6 +113,13 @@ export default {
       });
       this.$data.todoItems = newTodos; // 변수가 바뀐지 모른다. 그래서 복수후 재할당
     },
+
+    ...mapActions('storeTodo', {
+      dispatchClearAll: 'clearAll',
+      dispatchDoneToggle: 'doneToggle',
+      dispatchRemoveTodo: 'RemoveTodo',
+      dispatchAddTodo: 'addTodo',
+    }),
   },
   components: {
     TodoHeader: TodoHeader,
@@ -119,7 +127,9 @@ export default {
     TodoInput: TodoInput,
     TodoList: TodoList,
   },
-  computed: {},
+  computed: {
+    ...mapGetters('todoStore', ['todoItems']),
+  },
   watch: {
     /* 자동처리 + 비동기식. data 에 등록된 프로퍼티(변수) 모니터링. 메서드로 작성. 매개변수 필수. 외부 api 호출을 위해서 사용 */
   },
