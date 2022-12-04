@@ -39,3 +39,39 @@ const west = ['N', 'C', 'G'];
 console.log(east.concat(west));
 const countries = [...east, ...west];
 console.log(countries);
+
+// 객체에서의 스프레드 연산자 사용법을 익힌다.
+const car1 = {
+  type: 't1',
+  color: 'S1',
+  model: 2017,
+};
+
+const car2 = {
+  type: 't2',
+  color: 'S2',
+  model: 2019,
+};
+
+const { type } = car1;
+console.log(type); //t1
+
+//{type} = {...car1,...car2}
+const func = function ({ type }) {
+  console.log(type);
+};
+func({ ...car1, ...car2 });
+
+const moring = {
+  breadcfast: '미역국',
+  lunuch: '삼치구이',
+};
+
+const dinner = '스테이크';
+
+const meals = {
+  ...moring,
+  dinner, //
+};
+
+console.log(meals);

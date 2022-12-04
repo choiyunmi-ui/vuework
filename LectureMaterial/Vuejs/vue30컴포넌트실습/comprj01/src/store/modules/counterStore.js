@@ -1,5 +1,5 @@
 // Vuex store 모듈 만들기
-//import axios from 'axios';
+// import axios from 'axios';
 
 const store = {
   namespaced: true /* 모듈 store 여부 설정 */,
@@ -11,12 +11,10 @@ const store = {
      */
     setCounter(mutations /* 고정 */, payload) {
       const { commit } = mutations;
-      debugger;
       commit('setCounter', payload);
     },
     get(mutations /* 고정 */, payload) {
       const { commit } = mutations;
-      debugger;
       commit('get', payload);
     },
   },
@@ -30,8 +28,7 @@ const store = {
       state /* 고정 */,
       param /* mutations.commit 호출시 넘겨지는 값 */,
     ) {
-      debugger;
-      //state.인자 = param;
+      // state.인자 = param;
       state.counter = state.counter + param;
     },
     get(state /* 고정 */, param /* mutations.commit 호출시 넘겨지는 값 */) {
