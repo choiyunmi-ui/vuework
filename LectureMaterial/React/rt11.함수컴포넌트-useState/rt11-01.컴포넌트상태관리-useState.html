@@ -161,7 +161,11 @@
   function Example({ count, callback }) {
     const [age, setAge] = useState(30); // 상태값이 기본타입인 경우
     const [fruit, setFruit] = useState('banana'); // 상태값이 기본타입인 경우
-    const [todos, setTodos] = useState([{ text: 'Learn React' }]); // 상태값이 참조타입인 경우
+    const [todos, setTodos] = useState([
+      { text: 'Learn React' },
+      { text: 'Learn Hook' },
+      { text: 'Learn Redux' }
+    ]); // 상태값이 참조타입인 경우
 
     const handler = (e) => {
       // 이벤트 핸들러는 화살표 함수로 만든다
@@ -180,7 +184,7 @@
         </div>
         <p> age: {age}</p>
         <p> fruit: {fruit}</p>
-        <p> { /* todos 상태값이 출력되게 하시오. */}</p>
+        <p> {todos && todos.map((todo, index) => (<li key={index}> {todo.text} </li>))} </p>
       </div>
     )
   }
